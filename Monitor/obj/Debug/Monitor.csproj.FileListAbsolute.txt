@@ -1,0 +1,15 @@
+C:\Users\OWL\Desktop\test\Monitor\Monitor\bin\Debug\Monitor.exe.config
+C:\Users\OWL\Desktop\test\Monitor\Monitor\bin\Debug\Monitor.exe
+C:\Users\OWL\Desktop\test\Monitor\Monitor\bin\Debug\Monitor.pdb
+C:\Users\OWL\Desktop\test\Monitor\Monitor\obj\Debug\Monitor.csprojResolveAssemblyReference.cache
+C:\Users\OWL\Desktop\test\Monitor\Monitor\obj\Debug\MainWindow.baml
+C:\Users\OWL\Desktop\test\Monitor\Monitor\obj\Debug\MainWindow.g.cs
+C:\Users\OWL\Desktop\test\Monitor\Monitor\obj\Debug\App.g.cs
+C:\Users\OWL\Desktop\test\Monitor\Monitor\obj\Debug\Monitor_MarkupCompile.cache
+C:\Users\OWL\Desktop\test\Monitor\Monitor\obj\Debug\Monitor.g.resources
+C:\Users\OWL\Desktop\test\Monitor\Monitor\obj\Debug\Monitor.Properties.Resources.resources
+C:\Users\OWL\Desktop\test\Monitor\Monitor\obj\Debug\Monitor.csproj.GenerateResource.Cache
+C:\Users\OWL\Desktop\test\Monitor\Monitor\obj\Debug\Monitor.exe
+C:\Users\OWL\Desktop\test\Monitor\Monitor\obj\Debug\Monitor.pdb
+C:\Users\OWL\Desktop\test\Monitor\Monitor\obj\Debug\TipsWindow.baml
+C:\Users\OWL\Desktop\test\Monitor\Monitor\obj\Debug\TipsWindow.g.cs
