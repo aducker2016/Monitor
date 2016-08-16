@@ -17,6 +17,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.Configuration;
 using System.IO;
+using System.Runtime.InteropServices;
 
 namespace Monitor
 {
@@ -31,6 +32,8 @@ namespace Monitor
         NotifyIcon notifyIcon;
 
         private DispatcherTimer Timer { get; set; }
+
+        private bool HadAssertWindow { get; set; }
 
         public delegate void DelegateReceive(string s);
 
@@ -98,6 +101,7 @@ namespace Monitor
                 Timer = new DispatcherTimer();
                 Timer.Interval = TimeSpan.FromMilliseconds(30000);
                 Timer.Tick += new EventHandler(TimeOut);
+                Timer.Tick += new EventHandler(CheckWindowAssert);
                 Timer.Start();
             }
             else if (runtype == VAL_CLIENT)
@@ -172,6 +176,7 @@ namespace Monitor
         {
             string filename = "SendData.log";
 
+            //发送日志
             try
             {
                 StreamReader reader = new StreamReader(filename);
@@ -188,6 +193,7 @@ namespace Monitor
             catch
             { }
 
+            //清空日志
             try
             {
                 StreamWriter writer = new StreamWriter(filename, false, Encoding.UTF8);
@@ -196,6 +202,39 @@ namespace Monitor
             }
             catch
             { }
+        }
+
+        [DllImport("User32.dll", EntryPoint = "FindWindow")]
+        public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
+
+        private void CheckWindowAssert(object sender, EventArgs e)
+        {
+            IntPtr hwnd = FindWindow(null, "Microsoft Visual C++ Runtime Library");
+            bool findAssertWindow = (IntPtr.Zero != hwnd);
+
+            // 是否有挂掉窗口，状态发生变化
+            if (HadAssertWindow != findAssertWindow)
+            {
+                HadAssertWindow = findAssertWindow;
+                if (HadAssertWindow)
+                {
+                    try
+                    {
+                        StreamReader reader = new StreamReader(@"word\assert.log");
+                        StreamWriter writer = new StreamWriter("SendData.log", true, Encoding.UTF8);
+                        string line = null;
+                        while ((line = reader.ReadLine()) != null)
+                        {
+                            writer.WriteLine(line);
+                        }
+                        writer.Flush();
+                        reader.Close();
+                        writer.Close();
+                    }
+                    catch
+                    { }
+                }
+            }
         }
     }
 }
