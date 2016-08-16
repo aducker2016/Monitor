@@ -44,7 +44,7 @@ namespace Monitor
             {
                 Socket socket = serverSocket.Accept();
                 sockets.Add(socket);
-                output("客户端连接成功:" +  socket.RemoteEndPoint.ToString());
+                output("客户端连接成功:" + socket.RemoteEndPoint.ToString());
 
                 Thread thread = new Thread(receive);
                 thread.IsBackground = true;
@@ -52,15 +52,17 @@ namespace Monitor
             }
         }
 
-        public override void send(string s)
+        public override bool send(string s)
         {
             // 发送数据
+            bool res = false;
             for (int i = sockets.Count - 1; i >= 0; i--)
             {
                 Socket socket = sockets[i];
                 try
                 {
                     socket.Send(Encoding.UTF8.GetBytes(s + "#"));
+                    res = true;
                 }
                 catch
                 {
@@ -70,6 +72,7 @@ namespace Monitor
                     sockets.RemoveAt(i);
                 }
             }
+            return res;
         }
 
         public override void receive(object obj)

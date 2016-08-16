@@ -12,7 +12,7 @@ namespace Monitor
 
         public abstract void connect();
 
-        public abstract void send(string s);
+        public abstract bool send(string s);
 
         public abstract void receive(object obj);
     }

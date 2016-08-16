@@ -175,6 +175,7 @@ namespace Monitor
         private void TimeOut(object sender, EventArgs e)
         {
             string filename = "SendData.log";
+            bool resetfile = true;
 
             //发送日志
             try
@@ -185,7 +186,10 @@ namespace Monitor
                 {
                     if (line.Length > 0)
                     {
-                        monitor.send(line);
+                        if (!monitor.send(line))
+                        {
+                            resetfile = false;
+                        }
                     }
                 }
                 reader.Close();
@@ -196,9 +200,12 @@ namespace Monitor
             //清空日志
             try
             {
-                StreamWriter writer = new StreamWriter(filename, false, Encoding.UTF8);
-                writer.Flush();
-                writer.Close();
+                if (resetfile)
+                {
+                    StreamWriter writer = new StreamWriter(filename, false, Encoding.UTF8);
+                    writer.Flush();
+                    writer.Close();
+                }
             }
             catch
             { }

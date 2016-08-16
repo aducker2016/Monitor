@@ -33,7 +33,7 @@ namespace Monitor
         public override void connect()
         {
             byte[] tmp = new byte[1];
-            while(true)
+            while (true)
             {
                 string[] keys = socketMap.Keys.ToArray();
                 foreach (string key in keys)
@@ -75,13 +75,13 @@ namespace Monitor
                             socket.Close();
                             socketMap[key] = null;
                         }
-                    }                   
+                    }
                 }
                 Thread.Sleep(10000);
             }
         }
 
-        public override void send(string s)
+        public override bool send(string s)
         {
             // 发送数据
             foreach (var item in socketMap)
@@ -98,6 +98,7 @@ namespace Monitor
                     }
                 }
             }
+            return true;
         }
 
         public override void receive(object obj)

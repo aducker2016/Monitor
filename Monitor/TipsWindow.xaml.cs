@@ -42,7 +42,7 @@ namespace Monitor
 
         private void TimeOut(object sender, EventArgs e)
         {
-            for(int i = 0; i < this.Height; i++)
+            for (int i = 0; i < this.Height; i++)
             {
                 this.Top -= 1;
                 Thread.Sleep(2);
