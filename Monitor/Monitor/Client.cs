@@ -119,7 +119,7 @@ namespace Monitor
                         }
                     }
                 }
-                catch (Exception ex)
+                catch
                 {
                     break;
                 }

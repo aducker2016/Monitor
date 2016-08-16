@@ -19,7 +19,14 @@ namespace Monitor
         {
             window = win;
 
-            IPAddress ip = IPAddress.Parse("127.0.0.1");
+            string ipstr = "127.0.0.1";
+            string[] ipss = ips.Split(new Char[] { '#' });
+            if (ipss.Length > 0)
+            {
+                ipstr = ipss[0];
+            }
+
+            IPAddress ip = IPAddress.Parse(ipstr);
             serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             serverSocket.Bind(new IPEndPoint(ip, int.Parse(port)));
             serverSocket.Listen(30);

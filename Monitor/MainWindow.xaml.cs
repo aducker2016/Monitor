@@ -96,7 +96,7 @@ namespace Monitor
                 isClient = false;
 
                 Timer = new DispatcherTimer();
-                Timer.Interval = TimeSpan.FromMilliseconds(10000);
+                Timer.Interval = TimeSpan.FromMilliseconds(30000);
                 Timer.Tick += new EventHandler(TimeOut);
                 Timer.Start();
             }
