@@ -30,7 +30,7 @@ namespace Monitor
             serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             serverSocket.Bind(new IPEndPoint(ip, int.Parse(port)));
             serverSocket.Listen(30);
-            output("启动监听:" + serverSocket.LocalEndPoint.ToString());
+            output("启动监听: " + serverSocket.LocalEndPoint.ToString());
 
             Thread thread = new Thread(connect);
             thread.IsBackground = true;
@@ -44,7 +44,7 @@ namespace Monitor
             {
                 Socket socket = serverSocket.Accept();
                 sockets.Add(socket);
-                output("客户端连接成功:" + socket.RemoteEndPoint.ToString());
+                output("客户端连接成功: " + socket.RemoteEndPoint.ToString());
 
                 Thread thread = new Thread(receive);
                 thread.IsBackground = true;
@@ -66,7 +66,7 @@ namespace Monitor
                 }
                 catch
                 {
-                    output("客户端断开连接:" + socket.RemoteEndPoint.ToString());
+                    output("客户端断开连接: " + socket.RemoteEndPoint.ToString());
                     socket.Shutdown(SocketShutdown.Both);
                     socket.Close();
                     sockets.RemoveAt(i);
@@ -90,13 +90,13 @@ namespace Monitor
                     {
                         if (s.Length > 0)
                         {
-                            output("[ " + System.DateTime.Now.ToString() + "  :  " + socket.RemoteEndPoint.ToString() + " ]\n-> " + s);
+                            output("[ " + System.DateTime.Now.ToString() + " ]   " + socket.RemoteEndPoint.ToString() + "\n- " + s);
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    output("客户端断开连接:" + socket.RemoteEndPoint.ToString() + " error:" + ex.Message);
+                    output("客户端断开连接: " + socket.RemoteEndPoint.ToString() + " error:" + ex.Message);
                     socket.Shutdown(SocketShutdown.Both);
                     socket.Close();
                     sockets.Remove(socket);

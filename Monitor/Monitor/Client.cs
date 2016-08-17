@@ -48,7 +48,7 @@ namespace Monitor
                             Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                             socket.Connect(new IPEndPoint(ip, int.Parse(info[1])));
                             socketMap[key] = socket;
-                            output("连接服务器成功:" + socket.RemoteEndPoint.ToString());
+                            output("连接服务器成功: " + socket.RemoteEndPoint.ToString());
 
                             Thread thread = new Thread(receive);
                             thread.IsBackground = true;
@@ -70,7 +70,7 @@ namespace Monitor
                         catch
                         {
                             Socket socket = socketMap[key];
-                            output("断开服务器连接:" + socket.RemoteEndPoint.ToString());
+                            output("断开服务器连接: " + socket.RemoteEndPoint.ToString());
                             socket.Shutdown(SocketShutdown.Both);
                             socket.Close();
                             socketMap[key] = null;
@@ -116,7 +116,7 @@ namespace Monitor
                     {
                         if (s.Length > 0)
                         {
-                            output("[ " + System.DateTime.Now.ToString() + "  :  " + socket.RemoteEndPoint.ToString() + " ]\n-> " + s);
+                            output("[ " + System.DateTime.Now.ToString() + " ]   " + socket.RemoteEndPoint.ToString() + "\n- " + s);
                         }
                     }
                 }

@@ -2,19 +2,40 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="TipsWindow" Height="300" Width="300" AllowsTransparency="True" WindowStyle="None" MouseDown="Window_MouseDown" Background="{x:Null}" Closed="Window_Closed" ShowInTaskbar="False" Topmost="True">
+    <Window.Resources>
+        <Style x:Key="ButtonLeft" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Name="minBtn" Source="Pic/btn_normal.png" />
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Source" Value="Pic/btn_over.png" TargetName="minBtn" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Source" Value="Pic/btn_down.png" TargetName="minBtn" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
-        <Border CornerRadius="3" Margin="10" BorderThickness="1"  BorderBrush="Gray" Opacity="0.8">
+        <Border CornerRadius="3" Margin="10" BorderThickness="1"  BorderBrush="#FF00C51B">
             <Border.Effect>
                 <DropShadowEffect ShadowDepth="0" Color="#FF414141" BlurRadius="8"/>
             </Border.Effect>
-            <Border Opacity="0.4" Margin="0" CornerRadius="3" Background="Black">
+            <Border Opacity="0.7" Margin="0" CornerRadius="3" Background="#FF39454F">
+                <Border Margin="0,65,0,0" BorderThickness="0,1,0,0" CornerRadius="0,0,3,3" Background="White" BorderBrush="Black"/>
             </Border>
         </Border>
         <Grid>
-            <Border CornerRadius="3" Margin="10,150,10,10" BorderThickness="1"  BorderBrush="Gray" Background="White"/>
-            <TextBox x:Name="TextReceive" Margin="11,80,11,15" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" IsReadOnly="True" BorderThickness="0"/>
-            <Button Content="关闭" HorizontalAlignment="Right" Margin="0,10,20,0" VerticalAlignment="Top" Width="44" Click="Button_Click" Background="#FF595959" Foreground="#FFCDCDCD" BorderBrush="#FF666666"/>
-            <Label Content="监控信息" Margin="25,23,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="30" FontWeight="Bold"/>
+            <Label Content="监控信息" Margin="19,21,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="30" FontWeight="Bold"/>
+            <TextBox x:Name="TextReceive" Margin="21,87,21,17" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" IsReadOnly="True" BorderThickness="0" Background="{x:Null}" Foreground="#FF0053B8" FontSize="14"/>
+            <Button Content="关闭" Height="65" HorizontalAlignment="Right" Margin="0,11,11,0" Name="button1" VerticalAlignment="Top" Width="64" Foreground="#FFDE4747" Focusable="True" BorderBrush="{x:Null}" BorderThickness="0" Style="{StaticResource ButtonLeft}" Click="Button_Click"/>
         </Grid>
     </Grid>
 </Window>

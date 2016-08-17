@@ -111,7 +111,11 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Pic\btn_down.png" />
+    <Resource Include="Pic\btn_normal.png" />
+    <Resource Include="Pic\btn_over.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Pic\main.ico" />
   </ItemGroup>
